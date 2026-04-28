@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TOPMO — The Top Tier of Digital Goods. Globally Delivered.</title>
+<meta name="description" content="TOPMO is a global, trust-first digital marketplace for game keys, gift cards, AI subscriptions, software licenses, mobile app code, eBooks, and Binance USDT cards. 30+ currencies. Crypto-native. Instantly delivered." />
+
+<!-- FONTS: Fraunces (editorial display) + Manrope (UI/body) + JetBrains Mono (technical accent) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOPMO — DESIGN SYSTEM
+   ============================================================ */
+:root{
+  /* COLOR TOKENS */
+  --ink:        #0D0D11;     /* primary dark text & anchors */
+  --ink-soft:   #1F1E24;
+  --paper:      #F5F1E8;     /* primary background — warm off-white */
+  --cream:      #FBF8EF;     /* lighter surface */
+  --mist:       #E8E2D5;     /* subtle dividers */
+  --smoke:      #6A6770;     /* secondary text */
+  --cinnabar:   #E0461E;     /* SIGNATURE ACCENT — vermilion */
+  --cinnabar-d: #B5371A;
+  --moss:       #2D4A2B;     /* verified / trust signal */
+  --brass:      #B89556;     /* premium tier */
+  --signal:     #FCD64F;     /* promo / flash */
+  --white:      #FFFFFF;
+  --black:      #000000;
+
+  /* TYPE */
+  --display: 'Fraunces', 'Times New Roman', serif;
+  --sans:    'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* SCALE */
+  --max: 1440px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+
+  /* MOTION */
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-feature-settings: "ss01","ss02","cv01";
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle paper grain overlay for editorial feel */
+body::before{
+  content:'';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .8 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:0;color:inherit;cursor:pointer}
+img,svg{display:block;max-width:100%}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.display{
+  font-family: var(--display);
+  font-weight: 500;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.02em;
+  line-height: .98;
+}
+.eyebrow{
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+.label{
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   UTILITY BAR
+   ============================================================ */
+.utility{
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 12px;
+}
+.utility-inner{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 9px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.utility-marquee{
+  display: flex;
+  gap: 28px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.utility-marquee span{display:inline-flex;align-items:center;gap:10px;color: rgba(251,248,239,.7)}
+.utility-marquee span::before{content:'●';color:var(--cinnabar);font-size:8px}
+.utility-tools{display:flex;gap:18px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.utility-tools select,.utility-tools button{
+  background: transparent;border:0;color:var(--cream);
+  font:inherit;cursor:pointer;letter-spacing:.1em;
+}
+.utility-tools .pipe{opacity:.3}
+
+@media (max-width: 760px){
+  .utility-marquee{display:none}
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245, 241, 232, 0.86);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--mist);
+}
+.header-inner{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px var(--gutter);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 36px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144, "SOFT" 0;
+}
+.logo svg{width:32px;height:32px;flex-shrink:0}
+
+.nav{
+  display: flex;
+  gap: 30px;
+  font-size: 14.5px;
+  font-weight: 500;
+  justify-content: center;
+}
+.nav a{
+  position:relative;
+  color: var(--ink-soft);
+  transition: color .2s var(--ease);
+}
+.nav a:hover{color: var(--cinnabar)}
+.nav a.active::after{
+  content:'';position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--cinnabar);
+}
+
+.header-actions{display:flex;gap:10px;align-items:center}
+.icon-btn{
+  width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid transparent;
+  transition: all .2s var(--ease);
+}
+.icon-btn:hover{background: var(--cream);border-color: var(--mist)}
+.icon-btn svg{width:18px;height:18px;stroke:var(--ink);stroke-width:1.6;fill:none}
+.cart-btn{position:relative}
+.cart-count{
+  position:absolute;top:2px;right:2px;
+  background:var(--cinnabar);color:var(--white);
+  font-family:var(--mono);font-size:9px;font-weight:600;
+  width:16px;height:16px;border-radius:50%;
+  display:grid;place-items:center;
+}
+.btn-signin{
+  font-size:13.5px;font-weight:600;
+  padding:10px 18px;border-radius: 999px;
+  border:1px solid var(--ink);color:var(--ink);
+  transition: all .2s var(--ease);
+}
+.btn-signin:hover{background:var(--ink);color:var(--cream)}
+
+@media (max-width: 980px){
+  .nav{display:none}
+  .header-inner{grid-template-columns: auto 1fr auto}
+}
+
+/* ============================================================
+   ANNOUNCEMENT TICKER
+   ============================================================ */
+.ticker{
+  background: var(--cinnabar);
+  color: var(--cream);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.ticker-track{
+  display: flex;
+  gap: 56px;
+  padding: 11px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+.ticker-track span{display:inline-flex;align-items:center;gap:14px}
+.ticker-track span::before{content:'◆';color: var(--signal)}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 90px) var(--gutter) clamp(60px, 9vw, 120px);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  position: relative;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--cinnabar);
+  box-shadow: 0 0 0 4px rgba(224,70,30,.18);
+}
+
+.hero-headline{
+  font-size: clamp(48px, 7.4vw, 108px);
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+.hero-headline em{
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--cinnabar);
+}
+.hero-headline .accent-line{
+  display:inline-block;
+  position: relative;
+}
+.hero-headline .accent-line::after{
+  content:'';
+  position:absolute;
+  left: -2%;
+  right: -2%;
+  bottom: .12em;
+  height: .42em;
+  background: var(--signal);
+  z-index:-1;
+  opacity: .55;
+}
+
+.hero-sub{
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin-bottom: 38px;
+}
+.hero-sub b{font-weight:700;color:var(--ink)}
+
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom: 50px}
+.btn-primary{
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 15px;font-weight: 600;
+  padding: 18px 32px;
+  border-radius: 999px;
+  display:inline-flex;align-items:center;gap:12px;
+  transition: all .25s var(--ease);
+}
+.btn-primary:hover{background: var(--cinnabar);transform: translateY(-2px)}
+.btn-primary svg{width:14px;height:14px;transition:transform .25s var(--ease)}
+.btn-primary:hover svg{transform: translateX(4px)}
+.btn-ghost{
+  background: transparent;
+  color: var(--ink);
+  font-size: 15px;font-weight: 600;
+  padding: 18px 28px;
+  display:inline-flex;align-items:center;gap:10px;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  transition: gap .25s var(--ease);
+}
+.btn-ghost:hover{gap: 16px}
+
+.hero-meta{
+  display: flex;
+  gap: clamp(20px, 4vw, 48px);
+  flex-wrap: wrap;
+}
+.hero-meta-item{display:flex;flex-direction:column;gap:4px}
+.hero-meta-item .num{
+  font-family: var(--display);
+  font-size: 32px;font-weight:600;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+}
+.hero-meta-item .lab{
+  font-family:var(--mono);font-size: 10.5px;
+  letter-spacing: .14em;text-transform: uppercase;
+  color: var(--smoke);
+}
+
+/* HERO VISUAL — stack of stylized digital cards */
+.hero-visual{
+  position: relative;
+  height: 560px;
+  display:grid;place-items:center;
+}
+.deck-card{
+  position: absolute;
+  width: 320px;
+  aspect-ratio: 1.586/1;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 30px 60px -20px rgba(13,13,17,.25), 0 8px 18px -6px rgba(13,13,17,.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--mono);
+  transition: transform .8s var(--ease);
+}
+.deck-card .card-brand{font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.deck-card .card-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.deck-card .card-num{font-size:14px;letter-spacing:.18em}
+.deck-card .card-amt{font-family:var(--display);font-size:42px;font-weight:600;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+
+.deck-1{
+  background: linear-gradient(135deg, #1a1a1f 0%, #0d0d11 100%);
+  color: var(--cream);
+  transform: rotate(-9deg) translateX(-90px) translateY(40px);
+  z-index: 1;
+}
+.deck-1 .card-brand{color: var(--signal)}
+.deck-2{
+  background: linear-gradient(135deg, #F0EBE0 0%, #E8E2D5 100%);
+  color: var(--ink);
+  transform: rotate(2deg) translateY(-20px);
+  z-index: 2;
+  border: 1px solid var(--mist);
+}
+.deck-2 .card-brand{color: var(--cinnabar)}
+.deck-3{
+  background: linear-gradient(135deg, #E0461E 0%, #B5371A 100%);
+  color: var(--cream);
+  transform: rotate(11deg) translateX(90px) translateY(60px);
+  z-index: 3;
+}
+.hero-visual:hover .deck-1{transform: rotate(-14deg) translateX(-120px) translateY(40px)}
+.hero-visual:hover .deck-3{transform: rotate(16deg) translateX(120px) translateY(60px)}
+
+.deck-stamp{
+  position: absolute;
+  top: -16px;
+  right: 12%;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 999px;
+  z-index: 10;
+  display:flex;align-items:center;gap:8px;
+}
+.deck-stamp::before{content:'';width:6px;height:6px;border-radius:50%;background:#26C97D;box-shadow:0 0 0 3px rgba(38,201,125,.25)}
+
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr;text-align:left;padding-top: 50px}
+  .hero-visual{height: 420px}
+}
+
+/* ============================================================
+   CATEGORIES STRIP
+   ============================================================ */
+.section{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(60px, 9vw, 110px) var(--gutter);
+}
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap: 30px;margin-bottom: 50px;
+  border-bottom: 1px solid var(--mist);
+  padding-bottom: 28px;
+}
+.section-title{
+  font-family: var(--display);
+  font-size: clamp(32px, 4.6vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.section-title em{
+  font-style: italic;font-weight:300;color: var(--cinnabar);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.section-link{
+  font-family: var(--mono);font-size: 12px;font-weight:500;
+  letter-spacing: .14em;text-transform: uppercase;
+  display:inline-flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--ink);padding-bottom:4px;
+  transition: gap .2s var(--ease);
+}
+.section-link:hover{gap:14px;color:var(--cinnabar);border-color:var(--cinnabar)}
+
+.cat-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+.cat-tile{
+  background: var(--cream);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-md);
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+  transition: all .25s var(--ease);
+  cursor: pointer;
+}
+.cat-tile:hover{
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+  transform: translateY(-3px);
+}
+.cat-tile:hover .cat-icon{background:var(--cinnabar);color:var(--cream)}
+.cat-tile:hover .cat-count{color:rgba(251,248,239,.6)}
+.cat-icon{
+  width: 42px;height: 42px;border-radius: 12px;
+  background: var(--paper);
+  display: grid;place-items: center;
+  transition: all .25s var(--ease);
+}
+.cat-icon svg{width:22px;height:22px;stroke-width:1.6;stroke:currentColor;fill:none}
+.cat-name{
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: auto;
+}
+.cat-count{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--smoke);
+  text-transform: uppercase;
+}
+.cat-tile.featured{
+  background: var(--cinnabar);
+  color: var(--cream);
+  border-color: var(--cinnabar);
+}
+.cat-tile.featured .cat-icon{background: rgba(255,255,255,.15)}
+.cat-tile.featured .cat-count{color: rgba(251,248,239,.7)}
+.cat-tile.featured:hover{background: var(--ink);border-color: var(--ink)}
+
+/* ============================================================
+   TRUST PILLARS
+   ============================================================ */
+.pillars{
+  background: var(--ink);
+  color: var(--cream);
+}
+.pillars-inner{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 70px var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.pillar{
+  padding: 0 36px;
+  border-left: 1px solid rgba(251,248,239,.14);
+}
+.pillar:first-child{border-left:0;padding-left:0}
+.pillar:last-child{padding-right:0}
+.pillar-num{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--cinnabar);
+  margin-bottom: 18px;
+}
+.pillar-title{
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.05;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.pillar-body{
+  font-size: 14px;line-height:1.55;
+  color: rgba(251,248,239,.7);
+}
+@media (max-width: 980px){
+  .pillars-inner{grid-template-columns: repeat(2,1fr); row-gap:36px}
+  .pillar{padding:0 18px;border-left:0}
+  .pillar:nth-child(even){border-left:1px solid rgba(251,248,239,.14)}
+}
+
+/* ============================================================
+   PRODUCT GRID
+   ============================================================ */
+.prod-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.prod-card{
+  background: var(--white);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex;flex-direction: column;
+  position: relative;
+  transition: all .3s var(--ease);
+}
+.prod-card:hover{
+  border-color: var(--ink);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -16px rgba(13,13,17,.18);
+}
+.prod-thumb{
+  aspect-ratio: 1.3/1;
+  background: var(--cream);
+  position: relative;
+  display:grid;place-items:center;
+  overflow:hidden;
+  border-bottom: 1px solid var(--mist);
+}
+.prod-badge{
+  position: absolute;top:14px;left:14px;
+  font-family: var(--mono);font-size: 10px;font-weight:600;
+  letter-spacing: .14em;text-transform:uppercase;
+  padding: 6px 10px;border-radius: 6px;
+  z-index: 5;
+}
+.badge-hot{background: var(--cinnabar);color:var(--cream)}
+.badge-new{background: var(--ink);color:var(--cream)}
+.badge-sale{background: var(--signal);color:var(--ink)}
+.badge-stock{background: rgba(45,74,43,.12);color:var(--moss)}
+.badge-promo{background: var(--moss);color:var(--cream)}
+
+.prod-body{
+  padding: 18px 20px 22px;
+  display:flex;flex-direction:column;gap:8px;flex:1;
+}
+.prod-cat{
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  color: var(--smoke);
+  text-transform: uppercase;
+}
+.prod-name{
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.prod-rating{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:11px;color:var(--smoke);
+}
+.prod-rating .stars{color: var(--signal);letter-spacing:1px;font-size:13px}
+.prod-foot{
+  margin-top: 14px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--mist);
+}
+.prod-price{
+  display:flex;flex-direction:column;
+}
+.prod-price .now{
+  font-family: var(--display);font-size: 22px;font-weight:600;
+  letter-spacing:-0.02em;
+  font-variation-settings: "opsz" 144;
+}
+.prod-price .was{
+  font-family: var(--mono);font-size: 11px;
+  text-decoration: line-through;color:var(--smoke);
+}
+.prod-buy{
+  background: var(--ink);color:var(--cream);
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;
+  transition: all .2s var(--ease);
+}
+.prod-buy:hover{background:var(--cinnabar);transform:rotate(-12deg) scale(1.08)}
+.prod-buy svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+
+/* Specific thumb illustrations */
+.thumb-card{
+  width: 78%;
+  aspect-ratio: 1.586/1;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  font-family: var(--mono);
+  box-shadow: 0 10px 22px -10px rgba(13,13,17,.25);
+}
+.thumb-binance{background: linear-gradient(135deg, #F2B90C 0%, #FCD64F 100%);color:var(--ink)}
+.thumb-apple{background: linear-gradient(135deg, #1A1A1F 0%, #0D0D11 100%);color:var(--cream)}
+.thumb-google{background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);color:var(--white)}
+.thumb-netflix{background: linear-gradient(135deg, #B81D1D 0%, #6E0F0F 100%);color:var(--white)}
+.thumb-steam{background: linear-gradient(135deg, #1B2838 0%, #0F1929 100%);color:#66c0f4}
+.thumb-ai{background: linear-gradient(135deg, #FBF8EF 0%, #E8E2D5 100%);color:var(--ink);border:1px solid var(--mist)}
+.thumb-ebook{background: linear-gradient(135deg, #2D4A2B 0%, #1A2D19 100%);color:var(--cream)}
+.thumb-amazon{background: linear-gradient(135deg, #232F3E 0%, #131921 100%);color:#FF9900}
+.thumb-spotify{background: linear-gradient(135deg, #1ED760 0%, #169C46 100%);color:var(--ink)}
+.thumb-yt{background: linear-gradient(135deg, #FF0000 0%, #B30000 100%);color:var(--white)}
+.thumb-vpn{background: linear-gradient(135deg, #4687FE 0%, #2E5FBC 100%);color:var(--white)}
+.thumb-code{background: linear-gradient(135deg, #0D0D11 0%, #1F1E24 100%);color:#7FE787;font-family: var(--mono)}
+.thumb-card .top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.thumb-card .bottom{font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+.thumb-card .small{font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+
+/* ============================================================
+   FLASH PROMO STRIP
+   ============================================================ */
+.flash{
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--r-xl);
+  padding: clamp(40px, 6vw, 70px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.flash::before{
+  content:'';position:absolute;
+  top: -40%;right: -10%;
+  width: 60%;aspect-ratio:1;
+  background: radial-gradient(circle, rgba(224,70,30,.3) 0%, transparent 60%);
+  border-radius: 50%;
+}
+.flash-eyebrow{
+  font-family: var(--mono);
+  font-size: 12px;letter-spacing: .2em;text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 18px;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.flash-eyebrow::before{
+  content:'';width:8px;height:8px;border-radius:50%;background:var(--signal);
+  animation: pulse 1.5s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(252,214,79,.7)}
+  50%{box-shadow:0 0 0 10px rgba(252,214,79,0)}
+}
+.flash-title{
+  font-family: var(--display);
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 500;
+  line-height: .98;
+  margin-bottom: 22px;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.flash-title em{font-style:italic;font-weight:300;color: var(--signal);font-variation-settings:"opsz" 144,"SOFT" 100}
+.flash-sub{
+  font-size: 16px;
+  color: rgba(251,248,239,.75);
+  max-width: 460px;
+  margin-bottom: 32px;
+  line-height: 1.55;
+}
+.countdown{
+  display: flex;gap: 12px;
+}
+.cd-unit{
+  background: rgba(251,248,239,.06);
+  border: 1px solid rgba(251,248,239,.12);
+  border-radius: 12px;
+  padding: 16px 18px;
+  min-width: 76px;
+  text-align: center;
+}
+.cd-unit .num{
+  font-family: var(--display);
+  font-size: 36px;font-weight:600;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+  display: block;
+  line-height: 1;
+}
+.cd-unit .lab{
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(251,248,239,.6);
+  margin-top: 6px;
+  display: block;
+}
+
+.flash-deals{
+  display: grid;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+.flash-deal{
+  background: rgba(251,248,239,.06);
+  border: 1px solid rgba(251,248,239,.12);
+  border-radius: var(--r-md);
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+  transition: all .2s var(--ease);
+  cursor: pointer;
+}
+.flash-deal:hover{background: rgba(251,248,239,.1);border-color: var(--cinnabar)}
+.fd-name{font-family:var(--display);font-size: 16px;font-weight: 500;margin-bottom: 4px}
+.fd-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(251,248,239,.55)}
+.fd-price{display:flex;flex-direction:column;align-items:flex-end}
+.fd-price .now{font-family:var(--display);font-size:22px;font-weight:600;color:var(--signal);font-variation-settings:"opsz" 144}
+.fd-price .was{font-family:var(--mono);font-size:11px;text-decoration:line-through;opacity:.5}
+.fd-bar{
+  height: 4px;background: rgba(251,248,239,.1);border-radius: 999px;
+  overflow: hidden;margin-top: 10px;
+  grid-column: 1 / -1;
+}
+.fd-bar i{display:block;height:100%;background: var(--signal);border-radius:999px}
+
+@media (max-width: 980px){
+  .flash{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   AI STACK BUILDER
+   ============================================================ */
+.stack{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: stretch;
+  background: var(--cream);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-xl);
+  padding: clamp(40px, 6vw, 70px);
+}
+.stack-left .eyebrow{margin-bottom: 22px}
+.stack h2{
+  font-family: var(--display);
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.stack h2 em{font-style:italic;font-weight:300;color:var(--cinnabar);font-variation-settings:"opsz" 144,"SOFT" 100}
+.stack-left p{
+  font-size: 16.5px;line-height: 1.6;color: var(--ink-soft);
+  margin-bottom: 36px;max-width: 480px;
+}
+.stack-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  padding-top:30px;border-top:1px solid var(--mist);
+}
+.stack-stat .num{
+  font-family: var(--display);font-size: 38px;font-weight:600;
+  letter-spacing: -0.02em;font-variation-settings:"opsz" 144;
+  display:block;line-height:1;
+}
+.stack-stat .lab{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--smoke);margin-top:8px;display:block;
+}
+
+.stack-builder{
+  background: var(--white);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  display: flex;flex-direction: column;
+  position: relative;
+}
+.sb-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--mist)}
+.sb-head .ttl{font-family:var(--display);font-size:18px;font-weight:600}
+.sb-head .badge{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:rgba(45,74,43,.12);color:var(--moss);padding:4px 10px;border-radius:4px}
+.sb-row{
+  display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;
+  padding: 14px 0;border-bottom: 1px dashed var(--mist);
+}
+.sb-row:last-of-type{border-bottom:0}
+.sb-check{
+  width: 22px;height:22px;border-radius:6px;
+  border: 1.5px solid var(--mist);
+  display:grid;place-items:center;
+}
+.sb-check.checked{background:var(--cinnabar);border-color:var(--cinnabar)}
+.sb-check.checked::after{content:'✓';color:var(--cream);font-size:13px;font-weight:700}
+.sb-name{font-family:var(--display);font-size:15.5px;font-weight:500}
+.sb-meta{font-family:var(--mono);font-size:11px;color:var(--smoke);letter-spacing:.08em;display:block;margin-top:2px}
+.sb-was{font-family:var(--mono);font-size:11.5px;text-decoration:line-through;color:var(--smoke)}
+.sb-now{font-family:var(--display);font-size:16.5px;font-weight:600;font-variation-settings:"opsz" 144;letter-spacing:-.01em}
+
+.sb-total{
+  margin-top: 22px;padding-top: 22px;border-top:1px solid var(--ink);
+  display:grid;grid-template-columns: 1fr auto;align-items:center;gap:18px;
+}
+.sb-total-lab{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);
+}
+.sb-total-lab b{display:block;font-family:var(--display);font-size:14px;letter-spacing:0;color:var(--moss);text-transform:none;font-weight:600;margin-top:4px}
+.sb-total-amt .now{font-family:var(--display);font-size:34px;font-weight:600;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+.sb-total-amt .was{font-family:var(--mono);font-size:12px;text-decoration:line-through;color:var(--smoke);text-align:right;display:block}
+.sb-cta{
+  margin-top: 18px;
+  background:var(--ink);color:var(--cream);
+  width:100%;padding:16px;border-radius:999px;
+  font-weight:600;font-size:14px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .2s var(--ease);
+}
+.sb-cta:hover{background:var(--cinnabar)}
+
+@media (max-width: 980px){.stack{grid-template-columns:1fr}}
+
+/* ============================================================
+   CRYPTO HIGHLIGHT
+   ============================================================ */
+.crypto-block{
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--r-xl);
+  padding: clamp(40px, 6vw, 70px);
+  display:grid;grid-template-columns: 1fr 1.1fr;gap: clamp(40px, 6vw, 70px);
+  align-items: center;position:relative;overflow:hidden;
+}
+.crypto-block::before{
+  content:'';position:absolute;
+  bottom:-50%;left:-15%;
+  width: 60%;aspect-ratio:1;
+  background: radial-gradient(circle, rgba(252,214,79,.18) 0%, transparent 60%);
+  border-radius:50%;
+}
+.crypto-visual{
+  position: relative;
+  aspect-ratio: 1.586/1;
+  background: linear-gradient(135deg, #F2B90C 0%, #FCD64F 100%);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  color: var(--ink);
+  font-family: var(--mono);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 30px 60px -20px rgba(252,214,79,.3);
+  z-index: 2;
+}
+.crypto-visual .top{display:flex;justify-content:space-between;align-items:center}
+.crypto-visual .brand{font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.crypto-visual .chip{
+  width: 38px;height:30px;border-radius: 6px;
+  background: linear-gradient(135deg,#0D0D11,#1F1E24);
+}
+.crypto-visual .num{font-size:13px;letter-spacing:.18em;margin: 16px 0 4px}
+.crypto-visual .amt{
+  font-family: var(--display);font-size: clamp(40px, 5vw, 60px);
+  font-weight:700;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144;
+}
+.crypto-visual .denom{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.crypto-visual .footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto}
+
+.crypto-block h2{
+  font-family: var(--display);
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight:500;line-height:.98;letter-spacing:-.02em;
+  margin-bottom:24px;font-variation-settings:"opsz" 144,"SOFT" 30;
+}
+.crypto-block h2 em{font-style:italic;font-weight:300;color:var(--signal);font-variation-settings:"opsz" 144,"SOFT" 100}
+.crypto-block p{font-size:16px;line-height:1.6;color:rgba(251,248,239,.75);margin-bottom:32px;max-width:520px}
+.crypto-features{display:grid;gap:18px;margin-bottom:36px;position:relative;z-index:2}
+.crypto-feat{display:flex;gap:16px;align-items:flex-start}
+.crypto-feat .num{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--cinnabar);padding-top:3px;flex-shrink:0;min-width:24px}
+.crypto-feat .ttl{font-family:var(--display);font-size:18px;font-weight:500;margin-bottom:4px}
+.crypto-feat .desc{font-size:14px;color:rgba(251,248,239,.65);line-height:1.5}
+
+@media (max-width: 980px){.crypto-block{grid-template-columns:1fr}}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-wrap{
+  display:grid;grid-template-columns: 1fr 1.4fr;gap: clamp(40px, 5vw, 80px);
+}
+.about-left .eyebrow{margin-bottom:24px}
+.about-left h2{
+  font-family: var(--display);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 500;line-height:.95;letter-spacing:-.02em;
+  margin-bottom:30px;font-variation-settings:"opsz" 144, "SOFT" 30;
+}
+.about-left h2 em{font-style:italic;font-weight:300;color:var(--cinnabar);font-variation-settings:"opsz" 144,"SOFT" 100}
+.about-quote{
+  font-family: var(--display);
+  font-size: 22px;font-weight:400;font-style:italic;
+  line-height: 1.4;color:var(--ink-soft);
+  border-left: 3px solid var(--cinnabar);
+  padding: 0 0 0 24px;
+  margin-bottom:30px;
+  max-width: 480px;
+}
+.about-right p{font-size:16.5px;line-height:1.7;color:var(--ink-soft);margin-bottom:22px}
+.about-right p b{color:var(--ink);font-weight:700}
+.entities{
+  display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
+  margin-top:40px;
+}
+.entity{
+  background: var(--cream);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-md);
+  padding: 22px;
+}
+.entity .flag{
+  font-size: 28px;line-height:1;margin-bottom:14px;display:block;
+  filter: grayscale(.1);
+}
+.entity .name{
+  font-family:var(--display);font-size:16px;font-weight:600;
+  letter-spacing:-.005em;margin-bottom:8px;line-height:1.15;
+}
+.entity .label{color: var(--smoke);margin-bottom:10px}
+.entity .meta{
+  font-family: var(--mono);font-size: 11px;
+  line-height: 1.6;color: var(--ink-soft);
+  letter-spacing: .02em;
+}
+.entity .meta b{color:var(--cinnabar);font-weight:600}
+
+@media (max-width: 980px){
+  .about-wrap{grid-template-columns:1fr}
+  .entities{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   ANNOUNCEMENTS
+   ============================================================ */
+.ann-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.ann{
+  background: var(--white);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  display: flex;flex-direction:column;gap:14px;
+  transition: all .25s var(--ease);
+  cursor: pointer;
+}
+.ann:hover{border-color:var(--ink);transform:translateY(-3px)}
+.ann-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 10px;border-radius:5px;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.tag-product{background:rgba(224,70,30,.12);color:var(--cinnabar)}
+.tag-policy{background:rgba(45,74,43,.12);color:var(--moss)}
+.tag-system{background:rgba(13,13,17,.08);color:var(--ink)}
+.tag-promo{background:var(--signal);color:var(--ink)}
+.ann-title{
+  font-family:var(--display);font-size:21px;font-weight:500;
+  letter-spacing:-.01em;line-height:1.18;
+}
+.ann-snippet{font-size:14.5px;color:var(--ink-soft);line-height:1.55;flex:1}
+.ann-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;border-top:1px dashed var(--mist);
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--smoke);
+}
+.ann-meta .read{color:var(--cinnabar);font-weight:600;text-transform:uppercase;letter-spacing:.14em}
+
+@media (max-width: 980px){.ann-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   TERMS & POLICY
+   ============================================================ */
+.policy-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+.policy-card{
+  background: var(--paper);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-md);
+  padding: 26px 22px;
+  display:flex;flex-direction:column;gap:12px;
+  transition: all .25s var(--ease);
+  cursor: pointer;
+}
+.policy-card:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.policy-card:hover .pc-num{color:var(--signal)}
+.policy-card:hover .pc-arrow{background:var(--cinnabar);color:var(--cream)}
+.pc-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--cinnabar);
+}
+.pc-title{
+  font-family:var(--display);font-size:21px;font-weight:500;letter-spacing:-.01em;line-height:1.2;
+}
+.pc-desc{font-size:13.5px;color:var(--smoke);line-height:1.5;flex:1}
+.pc-arrow{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--mist);color:var(--ink);
+  display:grid;place-items:center;align-self:flex-start;margin-top:8px;
+  transition:all .2s var(--ease);
+}
+.pc-arrow svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+
+@media (max-width: 980px){.policy-grid{grid-template-columns:1fr 1fr}}
+@media (max-width: 600px){.policy-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   NEWSLETTER (11% off)
+   ============================================================ */
+.news{
+  background: var(--cinnabar);
+  color: var(--cream);
+  border-radius: var(--r-xl);
+  padding: clamp(40px, 6vw, 70px);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.news::before,.news::after{
+  content:'';position:absolute;
+  width: 50%;aspect-ratio:1;border-radius:50%;
+}
+.news::before{
+  background: radial-gradient(circle,rgba(252,214,79,.25),transparent 60%);
+  top:-30%;left:-15%;
+}
+.news::after{
+  background: radial-gradient(circle,rgba(13,13,17,.18),transparent 60%);
+  bottom:-30%;right:-15%;
+}
+.news-inner{position:relative;z-index:2;max-width: 720px;margin:0 auto}
+.news-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+  background:rgba(13,13,17,.18);padding:8px 16px;border-radius:999px;
+}
+.news h2{
+  font-family:var(--display);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 500;line-height:.98;letter-spacing:-.02em;margin-bottom:22px;
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+}
+.news h2 em{font-style:italic;font-weight:300;color:var(--signal);font-variation-settings:"opsz" 144,"SOFT" 100}
+.news p{font-size:16.5px;line-height:1.55;color:rgba(251,248,239,.85);margin-bottom:34px;max-width:540px;margin-left:auto;margin-right:auto}
+.news-form{
+  display:flex;gap:8px;background:var(--cream);border-radius:999px;padding:6px;max-width:540px;margin:0 auto;
+}
+.news-form input{
+  flex:1;background:transparent;border:0;outline:0;
+  font-family:var(--sans);font-size:15px;color:var(--ink);
+  padding:14px 22px;
+}
+.news-form button{
+  background:var(--ink);color:var(--cream);font-weight:600;font-size:14px;
+  padding:14px 26px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:background .2s var(--ease);
+}
+.news-form button:hover{background:var(--cinnabar-d)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  background: var(--ink);
+  color: var(--cream);
+  margin-top: clamp(60px, 8vw, 100px);
+}
+.footer-top{
+  max-width: var(--max);margin:0 auto;
+  padding: clamp(60px, 8vw, 100px) var(--gutter) 50px;
+  display:grid;grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;gap: 40px;
+}
+.footer-brand .logo{color:var(--cream);margin-bottom:22px}
+.footer-brand .logo svg .ring{stroke:var(--cream)}
+.footer-brand .logo svg .peak{fill:var(--cinnabar)}
+.footer-tag{font-family:var(--display);font-size:18px;font-weight:400;font-style:italic;line-height:1.4;color:rgba(251,248,239,.75);max-width:320px;margin-bottom:30px}
+.footer-payments{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.payment-pill{
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(251,248,239,.06);border:1px solid rgba(251,248,239,.14);
+  color:rgba(251,248,239,.85);
+  padding:6px 10px;border-radius:6px;
+}
+.footer-col h4{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cinnabar);margin-bottom:20px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:14px;color:rgba(251,248,239,.7);transition:color .2s}
+.footer-col a:hover{color:var(--cream)}
+
+.footer-entities{
+  max-width: var(--max);margin:0 auto;
+  padding: 50px var(--gutter);
+  border-top: 1px solid rgba(251,248,239,.1);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+}
+.fe{font-size:12.5px;line-height:1.6;color:rgba(251,248,239,.65);font-family:var(--mono)}
+.fe b{display:block;font-family:var(--sans);font-size:14px;letter-spacing:0;color:var(--cream);margin-bottom:8px;font-weight:600}
+.fe span{color:var(--cinnabar)}
+
+.footer-bot{
+  max-width: var(--max);margin:0 auto;
+  padding: 26px var(--gutter);
+  border-top: 1px solid rgba(251,248,239,.1);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:rgba(251,248,239,.5);
+}
+.footer-bot a{color:rgba(251,248,239,.7)}
+.footer-bot .socials{display:flex;gap:14px}
+
+@media (max-width: 980px){
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-entities{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   ADMIN BRAND PANEL (visible reference for ADMIN)
+   ============================================================ */
+.brand-panel{
+  background: var(--cream);
+  border: 1px dashed var(--cinnabar);
+  border-radius: var(--r-xl);
+  padding: clamp(36px, 5vw, 60px);
+  position: relative;
+}
+.brand-panel::before{
+  content: 'ADMIN · BRAND IDENTITY REFERENCE';
+  position: absolute;top:-12px;left:24px;
+  background: var(--paper);padding: 4px 14px;
+  font-family: var(--mono);font-size: 10.5px;font-weight:600;
+  letter-spacing: .2em;color: var(--cinnabar);
+}
+.brand-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+.bg-block h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);margin-bottom:16px}
+.slogans{display:flex;flex-direction:column;gap:14px}
+.slogan{
+  background: var(--white);border:1px solid var(--mist);border-radius:var(--r-sm);
+  padding:14px 18px;font-family:var(--display);font-size:17px;font-weight:500;
+  font-style:italic;display:flex;align-items:center;gap:12px;line-height:1.3;
+}
+.slogan b{font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-style:normal;color:var(--cinnabar);font-weight:600;flex-shrink:0}
+.swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.swatch{padding:14px;border-radius:var(--r-sm);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.swatch b{display:block;font-size:12px;letter-spacing:0;text-transform:none;font-weight:600;margin-bottom:4px;font-family:var(--sans)}
+.fonts-list{display:flex;flex-direction:column;gap:14px}
+.font-row{
+  background: var(--white);border:1px solid var(--mist);border-radius:var(--r-sm);
+  padding:14px 18px;
+}
+.font-row .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke);margin-bottom:4px}
+.font-row .name{font-size:18px;font-weight:600}
+
+@media (max-width: 980px){
+  .brand-grid{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   POPUP DEMO
+   ============================================================ */
+.popup{
+  position: fixed;
+  bottom: 24px;left: 24px;
+  background: var(--cream);
+  border: 1px solid var(--mist);
+  border-radius: var(--r-lg);
+  padding: 22px 24px 24px;
+  width: 340px;max-width: calc(100vw - 48px);
+  box-shadow: 0 30px 60px -16px rgba(13,13,17,.25);
+  z-index: 90;
+  font-size: 14px;line-height: 1.5;
+  display: none;
+  animation: slideUp .5s var(--ease) forwards;
+}
+.popup.show{display:block}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.popup-close{position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:var(--smoke);transition:all .2s}
+.popup-close:hover{background:var(--ink);color:var(--cream)}
+.popup-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cinnabar);font-weight:600;margin-bottom:10px}
+.popup h4{font-family:var(--display);font-size:20px;font-weight:600;line-height:1.15;margin-bottom:8px;letter-spacing:-.01em;padding-right:22px}
+.popup p{color:var(--ink-soft);margin-bottom:16px}
+.popup .code{
+  background: var(--ink);color:var(--signal);
+  font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.2em;
+  padding:10px 14px;border-radius:8px;text-align:center;margin-bottom:14px;
+}
+.popup .pop-cta{
+  background:var(--ink);color:var(--cream);width:100%;padding:12px;border-radius:999px;
+  font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .2s;
+}
+.popup .pop-cta:hover{background:var(--cinnabar)}
+
+/* ============================================================
+   AI CHAT FAB
+   ============================================================ */
+.fab{
+  position: fixed;
+  bottom: 24px;right: 24px;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 14px 20px;
+  border-radius: 999px;
+  display: flex;align-items: center;gap: 12px;
+  box-shadow: 0 16px 32px -10px rgba(13,13,17,.3);
+  z-index: 90;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+}
+.fab:hover{background: var(--cinnabar);transform: translateY(-3px)}
+.fab .pulse{
+  width:8px;height:8px;border-radius:50%;background:#26C97D;
+  box-shadow: 0 0 0 0 rgba(38,201,125,.6);
+  animation: fab-pulse 1.8s infinite;
+}
+@keyframes fab-pulse{
+  0%{box-shadow:0 0 0 0 rgba(38,201,125,.6)}
+  70%{box-shadow:0 0 0 12px rgba(38,201,125,0)}
+  100%{box-shadow:0 0 0 0 rgba(38,201,125,0)}
+}
+.fab .label{font-size:13px;font-weight:600;letter-spacing:.02em}
+.fab .ai-tag{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;background:var(--cinnabar);padding:3px 8px;border-radius:4px}
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-up.in{opacity:1;transform:translateY(0)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 760px){
+  .header-actions .btn-signin{display:none}
+  .deck-card{width: 240px}
+  .countdown{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     UTILITY BAR
+     ============================================================ -->
+<div class="utility">
+  <div class="utility-inner">
+    <div class="utility-marquee">
+      <span>Instant delivery worldwide</span>
+      <span>Pay with USDT, BTC, BNB</span>
+      <span>30+ currencies supported</span>
+      <span>SafeBuy Shield on every order</span>
+    </div>
+    <div class="utility-tools">
+      <button>🌐 EN</button>
+      <span class="pipe">|</span>
+      <button>$ USD</button>
+      <span class="pipe">|</span>
+      <a href="#account">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo" aria-label="TOPMO Home">
+      <!-- LOGO MARK: circle with internal triangular peak -->
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle class="ring" cx="32" cy="32" r="29" fill="none" stroke="#0D0D11" stroke-width="3.5"/>
+        <path class="peak" d="M32 14 L48 44 L16 44 Z" fill="#E0461E"/>
+        <circle cx="32" cy="32" r="3" fill="#0D0D11"/>
+      </svg>
+      TOPMO
+    </a>
+    <nav class="nav">
+      <a href="#categories" class="active">Marketplace</a>
+      <a href="#hot">Hot Deals</a>
+      <a href="#ai-stack">AI Tools</a>
+      <a href="#crypto">Crypto Cards</a>
+      <a href="#about">About</a>
+      <a href="#announcements">News</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">3</span>
+      </button>
+      <a href="#signin" class="btn-signin">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     ANNOUNCEMENT TICKER
+     ============================================================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Flash drop · Steam keys 70% off · ends in 5h</span>
+    <span>New · ChatGPT Plus + Claude Pro bundle saves $120/yr</span>
+    <span>Live · Binance USDT cards · 12 denominations</span>
+    <span>Affiliate program is open · earn up to 12%</span>
+    <span>Pay with crypto, gift cards, or local methods · 40+ options</span>
+    <span>Flash drop · Steam keys 70% off · ends in 5h</span>
+    <span>New · ChatGPT Plus + Claude Pro bundle saves $120/yr</span>
+    <span>Live · Binance USDT cards · 12 denominations</span>
+    <span>Affiliate program is open · earn up to 12%</span>
+    <span>Pay with crypto, gift cards, or local methods · 40+ options</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span class="eyebrow">Global · Trust-First · Crypto-Native</span>
+    </div>
+    <h1 class="hero-headline display">
+      The <em>top tier</em><br/>
+      of digital goods,<br/>
+      <span class="accent-line">delivered in seconds.</span>
+    </h1>
+    <p class="hero-sub">
+      <b>TOPMO</b> is a global marketplace for game keys, gift cards, AI subscriptions, software licenses, mobile app source code, eBooks and Binance USDT cards. Verified inventory. 40+ payment methods. Instant delivery to anywhere on earth.
+    </p>
+    <div class="hero-cta">
+      <a href="#categories" class="btn-primary">
+        Explore the marketplace
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href="#crypto" class="btn-ghost">
+        Top up Binance USDT
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="num">40+</span>
+        <span class="lab">Payment methods</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="num">180</span>
+        <span class="lab">Countries served</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="num">&lt; 5s</span>
+        <span class="lab">Delivery time</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="num">24h</span>
+        <span class="lab">Refund window</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="deck-stamp">SafeBuy Shield · Verified</div>
+    <div class="deck-card deck-1">
+      <div>
+        <div class="card-brand">Apple Gift Card</div>
+        <div class="card-label" style="opacity:.6">Digital · US Region</div>
+      </div>
+      <div>
+        <div class="card-num">XXXX-XXXX-XXXX</div>
+        <div class="card-amt">$100</div>
+      </div>
+    </div>
+    <div class="deck-card deck-2">
+      <div>
+        <div class="card-brand">ChatGPT Plus · 1Y</div>
+        <div class="card-label" style="opacity:.6">AI Subscription</div>
+      </div>
+      <div>
+        <div class="card-amt">$179</div>
+        <div class="card-label">save 18%</div>
+      </div>
+    </div>
+    <div class="deck-card deck-3">
+      <div>
+        <div class="card-brand">Binance · USDT</div>
+        <div class="card-label" style="opacity:.85">Top-up Card · Global</div>
+      </div>
+      <div>
+        <div class="card-num">8 ▪ 4 ▪ 4 ▪ 4</div>
+        <div class="card-amt">500₮</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATEGORIES
+     ============================================================ -->
+<section class="section" id="categories">
+  <div class="section-head">
+    <h2 class="section-title">Browse the <em>marketplace</em></h2>
+    <a href="#all" class="section-link">All categories <span>→</span></a>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-tile featured">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M8 12h8"/></svg>
+      </div>
+      <span class="cat-count">12 denominations</span>
+      <h3 class="cat-name">Binance USDT Cards</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 11h20"/></svg>
+      </div>
+      <span class="cat-count">8 brands</span>
+      <h3 class="cat-name">Gift Cards</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M10 20H4v-6"/><path d="m20 4-7 7"/><path d="m4 20 7-7"/></svg>
+      </div>
+      <span class="cat-count">2,400+ titles</span>
+      <h3 class="cat-name">Game Keys</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2v6"/><path d="m4.93 10.93 4.24 4.24"/><circle cx="12" cy="14" r="6"/></svg>
+      </div>
+      <span class="cat-count">28 services</span>
+      <h3 class="cat-name">AI Subscriptions</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 17v3M21 17v3M7 21h10"/></svg>
+      </div>
+      <span class="cat-count">130+ licenses</span>
+      <h3 class="cat-name">Software Licenses</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+      </div>
+      <span class="cat-count">Open source &amp; pro</span>
+      <h3 class="cat-name">Mobile App Code</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 3h7v18H3z"/><path d="M14 3h7v18h-7z"/></svg>
+      </div>
+      <span class="cat-count">12 categories</span>
+      <h3 class="cat-name">Business Software</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5v-15a2.5 2.5 0 0 1 2.5-2.5H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+      </div>
+      <span class="cat-count">eBooks &amp; courses</span>
+      <h3 class="cat-name">Knowledge</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 18a4 4 0 0 0-8 0"/><circle cx="12" cy="11" r="3"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+      </div>
+      <span class="cat-count">Streaming · Music · Gaming</span>
+      <h3 class="cat-name">Subscriptions</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+      </div>
+      <span class="cat-count">Game top-ups</span>
+      <h3 class="cat-name">In-Game Cards</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 12V7a7 7 0 1 1 14 0v5"/><rect x="3" y="12" width="18" height="9" rx="2"/></svg>
+      </div>
+      <span class="cat-count">Privacy &amp; security</span>
+      <h3 class="cat-name">VPN &amp; Security</h3>
+    </div>
+    <div class="cat-tile">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+      </div>
+      <span class="cat-count">Travel &amp; mobile</span>
+      <h3 class="cat-name">eSIM &amp; Telco</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUST PILLARS
+     ============================================================ -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <div class="pillar">
+      <div class="pillar-num">— 01</div>
+      <h3 class="pillar-title display">Verified inventory only.</h3>
+      <p class="pillar-body">Every key is pre-validated against publisher APIs before listing. Source certificate displayed on every product page.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">— 02</div>
+      <h3 class="pillar-title display">SafeBuy Shield on every order.</h3>
+      <p class="pillar-body">Invalid key → full refund within 24 hours. AI-verified claim flow. No questions, no friction.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">— 03</div>
+      <h3 class="pillar-title display">Crypto-native, end to end.</h3>
+      <p class="pillar-body">Pay with USDT, BTC, ETH, BNB. Use gift card balances as currency. Settle to your wallet — no fiat required.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">— 04</div>
+      <h3 class="pillar-title display">Spark AI assistant.</h3>
+      <p class="pillar-body">Recommends your stack, predicts the best time to buy, and answers in 12 languages. 24/7. Built in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOT PRODUCTS
+     ============================================================ -->
+<section class="section" id="hot">
+  <div class="section-head">
+    <h2 class="section-title">What's <em>trending</em> right now</h2>
+    <a href="#hot-all" class="section-link">View all hot picks <span>→</span></a>
+  </div>
+  <div class="prod-grid">
+    <!-- Card 1 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-hot">Hot · Top 1</span>
+        <div class="thumb-card thumb-binance">
+          <div class="top"><span>BINANCE</span><span>USDT</span></div>
+          <div class="bottom">$100</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Crypto Cards</span>
+        <h3 class="prod-name">Binance Gift Card · 100 USDT</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.95 · 12.4k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$97.40</span>
+            <span class="was">$100.00</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-hot">Hot</span>
+        <div class="thumb-card thumb-apple">
+          <div class="top"><span>APPLE</span><span>GIFT</span></div>
+          <div class="bottom">$50</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Gift Cards</span>
+        <h3 class="prod-name">Apple Gift Card · $50 · US</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.92 · 8.1k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$46.80</span>
+            <span class="was">$50.00</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-sale">Sale −22%</span>
+        <div class="thumb-card thumb-google">
+          <div class="top"><span>GOOGLE PLAY</span><span>CARD</span></div>
+          <div class="bottom">$25</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Gift Cards</span>
+        <h3 class="prod-name">Google Play Card · $25 · Global</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.91 · 15.7k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$19.50</span>
+            <span class="was">$25.00</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-new">New</span>
+        <div class="thumb-card thumb-ai">
+          <div class="top"><span>OPENAI</span><span>PLUS</span></div>
+          <div class="bottom">∞ AI</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">AI Subscriptions</span>
+        <h3 class="prod-name">ChatGPT Plus · 1 Year</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.88 · 4.2k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$179</span>
+            <span class="was">$240</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-promo">Promo</span>
+        <div class="thumb-card thumb-netflix">
+          <div class="top"><span>NETFLIX</span><span>PREMIUM</span></div>
+          <div class="bottom">4K</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Streaming</span>
+        <h3 class="prod-name">Netflix Premium · 12 Months</h3>
+        <div class="prod-rating"><span class="stars">★★★★☆</span><span>4.78 · 6.6k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$89</span>
+            <span class="was">$170</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-stock">In stock</span>
+        <div class="thumb-card thumb-yt">
+          <div class="top"><span>YOUTUBE</span><span>PREMIUM</span></div>
+          <div class="bottom">▶</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Streaming</span>
+        <h3 class="prod-name">YouTube Premium · 12 Months</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.86 · 9.3k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$59</span>
+            <span class="was">$140</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-hot">Hot</span>
+        <div class="thumb-card thumb-steam">
+          <div class="top"><span>STEAM</span><span>WALLET</span></div>
+          <div class="bottom">$50</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Game Keys</span>
+        <h3 class="prod-name">Steam Wallet · $50 · Global</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.89 · 11.2k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$47.20</span>
+            <span class="was">$50.00</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8 -->
+    <article class="prod-card">
+      <div class="prod-thumb">
+        <span class="prod-badge badge-new">New</span>
+        <div class="thumb-card thumb-code">
+          <div class="top"><span>FLUTTER</span><span>v3.24</span></div>
+          <div class="bottom">{ }</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <span class="prod-cat">Mobile App Code</span>
+        <h3 class="prod-name">eCommerce App · Flutter Source</h3>
+        <div class="prod-rating"><span class="stars">★★★★★</span><span>4.94 · 1.4k orders</span></div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="now">$129</span>
+            <span class="was">$249</span>
+          </div>
+          <button class="prod-buy" aria-label="Buy"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     FLASH PROMO STRIP
+     ============================================================ -->
+<section class="section">
+  <div class="flash">
+    <div>
+      <div class="flash-eyebrow">Lightning Drop · Live now</div>
+      <h2 class="flash-title">Six hours.<br/><em>Ten deals.</em><br/>Then they're gone.</h2>
+      <p class="flash-sub">Every day at 12:00 GMT, ten deals go live with up to 95% off. Limited slots. Real countdown. Once a deal is gone, it's gone.</p>
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><span class="num" data-cd="hh">04</span><span class="lab">Hours</span></div>
+        <div class="cd-unit"><span class="num" data-cd="mm">37</span><span class="lab">Minutes</span></div>
+        <div class="cd-unit"><span class="num" data-cd="ss">12</span><span class="lab">Seconds</span></div>
+      </div>
+    </div>
+    <div class="flash-deals">
+      <div class="flash-deal">
+        <div>
+          <div class="fd-name">Cyberpunk 2077 · Steam Key</div>
+          <div class="fd-meta">71 / 100 sold · ends in 4h 37m</div>
+          <div class="fd-bar"><i style="width:71%"></i></div>
+        </div>
+        <div class="fd-price">
+          <span class="now">$11.40</span>
+          <span class="was">$59.99</span>
+        </div>
+      </div>
+      <div class="flash-deal">
+        <div>
+          <div class="fd-name">Adobe Creative Cloud · 1 Year</div>
+          <div class="fd-meta">38 / 50 sold · ends in 4h 37m</div>
+          <div class="fd-bar"><i style="width:76%"></i></div>
+        </div>
+        <div class="fd-price">
+          <span class="now">$249</span>
+          <span class="was">$659</span>
+        </div>
+      </div>
+      <div class="flash-deal">
+        <div>
+          <div class="fd-name">Midjourney Pro · 6 Months</div>
+          <div class="fd-meta">62 / 80 sold · ends in 4h 37m</div>
+          <div class="fd-bar"><i style="width:78%"></i></div>
+        </div>
+        <div class="fd-price">
+          <span class="now">$99</span>
+          <span class="was">$192</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AI STACK BUILDER
+     ============================================================ -->
+<section class="section" id="ai-stack">
+  <div class="stack">
+    <div class="stack-left">
+      <span class="eyebrow">— Stack Builder · Patent pending</span>
+      <h2 class="display">Pick your tools.<br/>We'll find the <em>cheapest combination.</em></h2>
+      <p>Choose the AI, design and productivity subscriptions you actually use. Stack Builder rebalances licenses, family-plan slots, and reseller programs to engineer the lowest legal price — typically <b>40 to 60% below buying directly.</b></p>
+      <div class="stack-stats">
+        <div class="stack-stat"><span class="num">$757B</span><span class="lab">AI tools market</span></div>
+        <div class="stack-stat"><span class="num">28+</span><span class="lab">Services available</span></div>
+        <div class="stack-stat"><span class="num">52%</span><span class="lab">Avg. savings</span></div>
+      </div>
+    </div>
+    <div class="stack-builder">
+      <div class="sb-head">
+        <span class="ttl">My Creator Stack</span>
+        <span class="badge">Auto-optimized</span>
+      </div>
+      <div class="sb-row">
+        <div class="sb-check checked"></div>
+        <div>
+          <div class="sb-name">ChatGPT Plus</div>
+          <span class="sb-meta">12 months · official slot</span>
+        </div>
+        <span class="sb-was">$240</span>
+        <span class="sb-now">$179</span>
+      </div>
+      <div class="sb-row">
+        <div class="sb-check checked"></div>
+        <div>
+          <div class="sb-name">Midjourney Pro</div>
+          <span class="sb-meta">12 months · group plan</span>
+        </div>
+        <span class="sb-was">$240</span>
+        <span class="sb-now">$148</span>
+      </div>
+      <div class="sb-row">
+        <div class="sb-check checked"></div>
+        <div>
+          <div class="sb-name">Canva Pro</div>
+          <span class="sb-meta">12 months · reseller</span>
+        </div>
+        <span class="sb-was">$120</span>
+        <span class="sb-now">$48</span>
+      </div>
+      <div class="sb-row">
+        <div class="sb-check checked"></div>
+        <div>
+          <div class="sb-name">CapCut Pro</div>
+          <span class="sb-meta">12 months</span>
+        </div>
+        <span class="sb-was">$95</span>
+        <span class="sb-now">$39</span>
+      </div>
+      <div class="sb-total">
+        <div class="sb-total-lab">Total per year<br/><b>You save $281 (42%)</b></div>
+        <div class="sb-total-amt">
+          <span class="now">$414</span>
+          <span class="was">$695</span>
+        </div>
+      </div>
+      <button class="sb-cta">
+        Buy stack now
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CRYPTO HIGHLIGHT
+     ============================================================ -->
+<section class="section" id="crypto">
+  <div class="crypto-block">
+    <div class="crypto-visual">
+      <div class="top">
+        <div class="brand">Binance · USDT</div>
+        <div class="chip"></div>
+      </div>
+      <div>
+        <div class="num">8 · 4 · 4 · 4 · 4</div>
+        <div class="amt">500₮</div>
+      </div>
+      <div class="footer">
+        <span class="denom">Top-up Card</span>
+        <span class="denom" style="color:var(--cinnabar)">SafeBuy ✓</span>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow" style="color:var(--signal)">— The Strategic Moat</span>
+      <h2 class="display" style="margin-top:14px">Buy USDT without<br/>a <em>bank account.</em></h2>
+      <p>For 1.4 billion unbanked adults, a Binance Gift Card is the simplest path to digital dollars. Pay with cash, local wallet, or any of our 40+ methods — receive USDT instantly. Designed for high-inflation, mobile-first markets in MENA, Latin America, and Southeast Asia.</p>
+      <div class="crypto-features">
+        <div class="crypto-feat">
+          <span class="num">— 01</span>
+          <div>
+            <div class="ttl">Officially licensed reseller</div>
+            <div class="desc">Cards minted directly through Binance's authorized merchant program. Zero gray-market risk.</div>
+          </div>
+        </div>
+        <div class="crypto-feat">
+          <span class="num">— 02</span>
+          <div>
+            <div class="ttl">12 denominations · $10 to $1,000</div>
+            <div class="desc">Match any wallet size. Bulk purchases over $5,000 receive an additional 1.5% discount.</div>
+          </div>
+        </div>
+        <div class="crypto-feat">
+          <span class="num">— 03</span>
+          <div>
+            <div class="ttl">Use as marketplace currency</div>
+            <div class="desc">Spend USDT card balance on any TOPMO product. The only marketplace where digital value flows in a closed loop.</div>
+          </div>
+        </div>
+      </div>
+      <a href="#binance" class="btn-primary" style="background:var(--cinnabar);color:var(--cream)">
+        Browse all USDT cards
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT US
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="about-wrap">
+    <div class="about-left">
+      <span class="eyebrow">— About Us</span>
+      <h2 class="display">A trust-first<br/>marketplace for the<br/><em>digital decade.</em></h2>
+      <p class="about-quote">"The world's largest digital catalog should also be the most trustworthy. We are building both."</p>
+    </div>
+    <div class="about-right">
+      <p>TOPMO operates a global, asset-light marketplace for digital goods — game keys, gift cards, AI and software subscriptions, mobile app source code, eBooks, and Binance USDT cards. Our infrastructure is operated by three coordinated entities across the United Kingdom, Estonia, and the United States.</p>
+      <p><b>Our mission</b> is to make every digital good — from a Steam key to a 500 USDT top-up — available to anyone, anywhere, with the same instant delivery, the same verified authenticity, and the same right to a fast refund. The legacy marketplaces in this category were built around scale, not trust. TOPMO is built around trust first, then scale.</p>
+      <p><b>Our edge</b> is a five-layer security framework, AI-driven fraud detection (Spark AI), and a circular crypto-native payment stack — pay with USDT, with a leftover Google Play balance, or with any of 40+ regional methods. We are the first marketplace where digital value moves in any direction.</p>
+      <div class="entities">
+        <div class="entity">
+          <span class="flag">🇬🇧</span>
+          <div class="name">MYEBOOKSTORE LTD</div>
+          <span class="label">United Kingdom · Operating Entity</span>
+          <div class="meta">
+            <b>Reg.</b> 16752395 · <b>UTR</b> 98927 16315<br/>
+            71-75 Shelton Street, Covent Garden,<br/>
+            London, WC2H 9JQ, United Kingdom<br/>
+            +44 208 040 3979 · hello@topmo.shop
+          </div>
+        </div>
+        <div class="entity">
+          <span class="flag">🇪🇪</span>
+          <div class="name">DAVIUS OÜ</div>
+          <span class="label">Estonia · EU Operations &amp; Tech</span>
+          <div class="meta">
+            <b>Registry</b> 17397295<br/>
+            Tartu mnt 67/1-13b, Tallinn 10115,<br/>
+            Estonia<br/>
+            +44 7537 176116 · hello@davius.info
+          </div>
+        </div>
+        <div class="entity">
+          <span class="flag">🇺🇸</span>
+          <div class="name">FAGOCO LLC</div>
+          <span class="label">United States · Americas Operations</span>
+          <div class="meta">
+            <b>Reg.</b> 0008046943 · <b>EIN</b> 981881812<br/>
+            1209 Mountain Road Pl NE Ste R,<br/>
+            Albuquerque, NM 87110, USA<br/>
+            +1 505 396 5389 · info@fagoco.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ANNOUNCEMENTS
+     ============================================================ -->
+<section class="section" id="announcements">
+  <div class="section-head">
+    <h2 class="section-title"><em>Announcements</em></h2>
+    <a href="#all-news" class="section-link">All news <span>→</span></a>
+  </div>
+  <div class="ann-grid">
+    <article class="ann">
+      <span class="ann-tag tag-product">New Category</span>
+      <h3 class="ann-title">Mobile App Source Code library now live</h3>
+      <p class="ann-snippet">Production-grade Flutter, React Native and Swift templates from vetted studios. Every project ships with documentation, deployment scripts, and 30 days of installation support.</p>
+      <div class="ann-meta">
+        <span>April 24, 2026</span>
+        <span class="read">Read →</span>
+      </div>
+    </article>
+    <article class="ann">
+      <span class="ann-tag tag-policy">Policy Update</span>
+      <h3 class="ann-title">SafeBuy Shield extended to 24 hours</h3>
+      <p class="ann-snippet">Effective May 1, every order is covered for a full 24 hours after delivery. Submit a single screenshot and our AI claims engine resolves valid refunds in under 12 minutes on average.</p>
+      <div class="ann-meta">
+        <span>April 18, 2026</span>
+        <span class="read">Read →</span>
+      </div>
+    </article>
+    <article class="ann">
+      <span class="ann-tag tag-promo">Promo</span>
+      <h3 class="ann-title">11% off your first order — instant code</h3>
+      <p class="ann-snippet">Sign up with your email and we'll send a single-use 11% off code that works across game keys, gift cards, and AI subscriptions. Stackable with our weekly Lightning Drops.</p>
+      <div class="ann-meta">
+        <span>April 12, 2026</span>
+        <span class="read">Read →</span>
+      </div>
+    </article>
+    <article class="ann">
+      <span class="ann-tag tag-system">Payments</span>
+      <h3 class="ann-title">Pix, GrabPay and STC Pay now supported</h3>
+      <p class="ann-snippet">Three regional payment methods are live this week: Pix for Brazil, GrabPay for Southeast Asia, and STC Pay for Saudi Arabia. Settle in your local currency at the lowest spread on the market.</p>
+      <div class="ann-meta">
+        <span>April 6, 2026</span>
+        <span class="read">Read →</span>
+      </div>
+    </article>
+    <article class="ann">
+      <span class="ann-tag tag-product">New Service</span>
+      <h3 class="ann-title">Spark AI Concierge available 24/7 in 12 languages</h3>
+      <p class="ann-snippet">Ask anything: best price for ChatGPT, recommended USDT denomination for your wallet size, license eligibility for your country. Spark AI replies in under three seconds in your language.</p>
+      <div class="ann-meta">
+        <span>March 30, 2026</span>
+        <span class="read">Read →</span>
+      </div>
+    </article>
+    <article class="ann">
+      <span class="ann-tag tag-policy">Compliance</span>
+      <h3 class="ann-title">PCI DSS Level 1 certification renewed</h3>
+      <p class="ann-snippet">TOPMO has completed its annual PCI DSS Level 1 audit and remains GDPR-compliant across all jurisdictions. Card data is tokenized and never stored on our servers.</p>
+      <div class="ann-meta">
+        <span>March 22, 2026</span>
+        <span class="read">Read →</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     TERMS & POLICY
+     ============================================================ -->
+<section class="section" id="terms">
+  <div class="section-head">
+    <h2 class="section-title">Terms &amp; <em>Policy</em></h2>
+    <a href="#legal" class="section-link">Legal center <span>→</span></a>
+  </div>
+  <div class="policy-grid">
+    <a href="#tos" class="policy-card">
+      <span class="pc-num">— 01</span>
+      <h3 class="pc-title">Terms of Service</h3>
+      <p class="pc-desc">Marketplace rules, account responsibilities, prohibited activities, dispute resolution, jurisdiction.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#privacy" class="policy-card">
+      <span class="pc-num">— 02</span>
+      <h3 class="pc-title">Privacy &amp; GDPR</h3>
+      <p class="pc-desc">What we collect, how we use it, your rights under GDPR, CCPA, UK DPA. Data minimization is the rule.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#refund" class="policy-card">
+      <span class="pc-num">— 03</span>
+      <h3 class="pc-title">SafeBuy &amp; Refunds</h3>
+      <p class="pc-desc">24-hour buyer protection. Invalid keys, undelivered codes, regional restrictions — covered with full refund.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#aml" class="policy-card">
+      <span class="pc-num">— 04</span>
+      <h3 class="pc-title">AML &amp; KYC</h3>
+      <p class="pc-desc">Sanctions screening, source-of-funds verification for crypto transactions, seller KYB requirements.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#cookies" class="policy-card">
+      <span class="pc-num">— 05</span>
+      <h3 class="pc-title">Cookie Policy</h3>
+      <p class="pc-desc">Strictly necessary, analytics, advertising. Granular opt-in, opt-out anytime from your account settings.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#seller" class="policy-card">
+      <span class="pc-num">— 06</span>
+      <h3 class="pc-title">Seller Agreement</h3>
+      <p class="pc-desc">Tier program, commission rates, payout terms, listing rules, dispute mediation, intellectual property.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#dmca" class="policy-card">
+      <span class="pc-num">— 07</span>
+      <h3 class="pc-title">DMCA &amp; IP Policy</h3>
+      <p class="pc-desc">Takedown procedure, repeat-infringer rules, counter-notice flow, designated agent contact.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+    <a href="#tax" class="policy-card">
+      <span class="pc-num">— 08</span>
+      <h3 class="pc-title">VAT &amp; Tax</h3>
+      <p class="pc-desc">VAT collection by region, US sales tax handling, invoicing, tax-ID validation for B2B buyers.</p>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     ADMIN BRAND PANEL
+     ============================================================ -->
+<section class="section">
+  <div class="brand-panel">
+    <div class="brand-grid">
+      <div class="bg-block">
+        <h4>Slogan options · pick one for production</h4>
+        <div class="slogans">
+          <div class="slogan"><b>A.</b> The top tier of digital goods. Globally delivered.</div>
+          <div class="slogan"><b>B.</b> Buy. Verify. Deliver. In seconds.</div>
+          <div class="slogan"><b>C.</b> Where the world's digital value flows freely.</div>
+          <div class="slogan"><b>D.</b> Every key verified. Every order delivered. Everywhere.</div>
+          <div class="slogan"><b>E.</b> The marketplace, modernised.</div>
+          <div class="slogan"><b>F.</b> Top of digital. Mode of modern.</div>
+        </div>
+      </div>
+      <div class="bg-block">
+        <h4>Color tokens</h4>
+        <div class="swatches">
+          <div class="swatch" style="background:var(--ink);color:var(--cream)"><b>Ink</b>#0D0D11</div>
+          <div class="swatch" style="background:var(--paper);color:var(--ink);border:1px solid var(--mist)"><b>Paper</b>#F5F1E8</div>
+          <div class="swatch" style="background:var(--cinnabar);color:var(--cream)"><b>Cinnabar</b>#E0461E</div>
+          <div class="swatch" style="background:var(--signal);color:var(--ink)"><b>Signal</b>#FCD64F</div>
+          <div class="swatch" style="background:var(--moss);color:var(--cream)"><b>Moss</b>#2D4A2B</div>
+          <div class="swatch" style="background:var(--brass);color:var(--ink)"><b>Brass</b>#B89556</div>
+        </div>
+      </div>
+      <div class="bg-block">
+        <h4>Type system</h4>
+        <div class="fonts-list">
+          <div class="font-row">
+            <div class="lbl">Display · headlines</div>
+            <div class="name" style="font-family:var(--display);font-weight:500">Fraunces</div>
+          </div>
+          <div class="font-row">
+            <div class="lbl">UI &amp; body · long-form</div>
+            <div class="name" style="font-family:var(--sans);font-weight:600">Manrope</div>
+          </div>
+          <div class="font-row">
+            <div class="lbl">Mono · technical &amp; price</div>
+            <div class="name" style="font-family:var(--mono);font-weight:500">JetBrains Mono</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER (11% OFF)
+     ============================================================ -->
+<section class="section">
+  <div class="news">
+    <div class="news-inner">
+      <span class="news-eyebrow">◆ Welcome offer</span>
+      <h2 class="display">Get <em>11% off</em> your<br/>first order — right now.</h2>
+      <p>Drop your email and we'll send a single-use 11% discount code valid across the entire marketplace. Stackable with Lightning Drops. No spam, easy unsubscribe — that's our policy.</p>
+      <form class="news-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Sent — check your inbox';">
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Get my code →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="color:var(--cream)">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <circle class="ring" cx="32" cy="32" r="29" fill="none" stroke="#FBF8EF" stroke-width="3.5"/>
+          <path class="peak" d="M32 14 L48 44 L16 44 Z" fill="#E0461E"/>
+          <circle cx="32" cy="32" r="3" fill="#FBF8EF"/>
+        </svg>
+        TOPMO
+      </a>
+      <p class="footer-tag">"The top tier of digital goods. Globally delivered."</p>
+      <h4 style="color:var(--cinnabar);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px">Payment partners</h4>
+      <div class="footer-payments">
+        <span class="payment-pill">Visa</span>
+        <span class="payment-pill">Mastercard</span>
+        <span class="payment-pill">Amex</span>
+        <span class="payment-pill">PayPal</span>
+        <span class="payment-pill">Apple Pay</span>
+        <span class="payment-pill">Google Pay</span>
+        <span class="payment-pill">Klarna</span>
+        <span class="payment-pill">USDT</span>
+        <span class="payment-pill">BTC</span>
+        <span class="payment-pill">ETH</span>
+        <span class="payment-pill">BNB</span>
+        <span class="payment-pill">Binance Pay</span>
+        <span class="payment-pill">Pix</span>
+        <span class="payment-pill">UPI</span>
+        <span class="payment-pill">STC Pay</span>
+        <span class="payment-pill">GrabPay</span>
+        <span class="payment-pill">+25 more</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Marketplace</h4>
+      <ul>
+        <li><a href="#">Game Keys</a></li>
+        <li><a href="#">Gift Cards</a></li>
+        <li><a href="#">Binance USDT</a></li>
+        <li><a href="#">AI Subscriptions</a></li>
+        <li><a href="#">Software Licenses</a></li>
+        <li><a href="#">Mobile App Code</a></li>
+        <li><a href="#">eBooks</a></li>
+        <li><a href="#">eSIM &amp; Telco</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Buy &amp; Sell</h4>
+      <ul>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Become a Seller</a></li>
+        <li><a href="#">Affiliate Program</a></li>
+        <li><a href="#">SPARK Loyalty Points</a></li>
+        <li><a href="#">Bulk &amp; B2B</a></li>
+        <li><a href="#">API Access</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Spark AI Chat</a></li>
+        <li><a href="#">SafeBuy Claim</a></li>
+        <li><a href="#">Order Status</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Service Status</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#announcements">Announcements</a></li>
+        <li><a href="#terms">Terms &amp; Policy</a></li>
+        <li><a href="#">Trust &amp; Security</a></li>
+        <li><a href="#">Press &amp; Brand</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Investors</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-entities">
+    <div class="fe">
+      <b>🇬🇧 MYEBOOKSTORE LTD · United Kingdom</b>
+      Reg. <span>16752395</span> · UTR <span>98927 16315</span><br/>
+      71-75 Shelton Street, Covent Garden,<br/>
+      London WC2H 9JQ, United Kingdom<br/>
+      +44 208 040 3979 · hello@topmo.shop
+    </div>
+    <div class="fe">
+      <b>🇪🇪 DAVIUS OÜ · Estonia</b>
+      Registry <span>17397295</span><br/>
+      Tartu mnt 67/1-13b, Tallinn 10115,<br/>
+      Estonia<br/>
+      +44 7537 176116 · hello@davius.info
+    </div>
+    <div class="fe">
+      <b>🇺🇸 FAGOCO LLC · United States</b>
+      Reg. <span>0008046943</span> · EIN <span>981881812</span><br/>
+      1209 Mountain Road Pl NE Ste R,<br/>
+      Albuquerque NM 87110, USA<br/>
+      +1 505 396 5389 · info@fagoco.com
+    </div>
+  </div>
+
+  <div class="footer-bot">
+    <span>© 2026 TOPMO. All rights reserved.</span>
+    <div class="socials">
+      <a href="#">X</a>
+      <a href="#">Telegram</a>
+      <a href="#">Discord</a>
+      <a href="#">Reddit</a>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+    <span>topmo.shop</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     POPUP DEMO
+     ============================================================ -->
+<div class="popup" id="popup">
+  <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+  <div class="popup-eyebrow">◆ First-time visitor</div>
+  <h4>Welcome to TOPMO. Here's <em style="font-style:italic;color:var(--cinnabar);font-family:var(--display)">11% off</em>.</h4>
+  <p>Single-use code, valid across every category. No minimum order.</p>
+  <div class="code">TOPMO11</div>
+  <button class="pop-cta" onclick="document.getElementById('popup').classList.remove('show')">
+    Use code now
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
+<!-- ============================================================
+     AI CHAT FAB
+     ============================================================ -->
+<div class="fab" role="button" tabindex="0">
+  <span class="pulse"></span>
+  <span class="label">Ask Spark AI</span>
+  <span class="ai-tag">AI</span>
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+  // Welcome popup after 2.5s
+  setTimeout(()=>{ document.getElementById('popup').classList.add('show'); }, 2500);
+  document.getElementById('popupClose').addEventListener('click', ()=>{
+    document.getElementById('popup').classList.remove('show');
+  });
+
+  // Live countdown
+  (function(){
+    let h=4, m=37, s=12;
+    const hh=document.querySelector('[data-cd=hh]');
+    const mm=document.querySelector('[data-cd=mm]');
+    const ss=document.querySelector('[data-cd=ss]');
+    const pad=n=>String(n).padStart(2,'0');
+    setInterval(()=>{
+      s--;
+      if(s<0){s=59;m--}
+      if(m<0){m=59;h--}
+      if(h<0){h=4;m=37;s=12}
+      hh.textContent=pad(h);mm.textContent=pad(m);ss.textContent=pad(s);
+    },1000);
+  })();
+
+  // Scroll-triggered fade-up (light-touch)
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
+  document.querySelectorAll('.section, .pillars, .hero').forEach(el=>{
+    el.classList.add('fade-up'); io.observe(el);
+  });
+</script>
+
+</body>
+</html>
